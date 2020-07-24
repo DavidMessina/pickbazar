@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+<body>
+   <%- include('../partials/headerNav') %>
+   
+   <!-- Productos aleatorios -->
+   <div class="container products-wrapper">
+      <div class="row">
+         <div class="col-12">
+            <%if(category.length==0){%>
+                  <h2 class="product-title">En este momento no hay productos de esta categoría</h2>
+                  <%}%>    
+               </div>
+               <% category.forEach(function(category){ %>
+                  <%if(category.state!=0){%>
+                  <div class="col-6 col-sm-4 col-lg-3">
+                     <section class="product-box">
+                        <a href="/products/detail/<%=category.id%>">
+                           <figure class="product-box_image">
+                              <img src="/images/products/<%=category.Image[0].name%>" alt="imagen de <%=category.name%>"">
+                           </figure>
+                           <article class=" product-box_data">
+                              <h2>$<%=category.price%></h2>
+                              <span><%=category.discount%>% OFF</span>
+                              <p><%=category.description%></p>
+                           </article>
+                           <a href="/cart"><i class="fas fa-cart-plus"></i></a>
+                        </a>
+                     </section>
+                  </div>
+                  <%}%>
+                  <%})%>
+               </div>
+               
+            </div>
+            
+            <%- include('../partials/footer') %>
+         </body>
+         
+         </html>

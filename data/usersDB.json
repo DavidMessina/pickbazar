@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "first_name": "David",
+        "last_name": "Messina",
+        "email": "davidmessina9@gmail.com",
+        "phone": "1132146241",
+        "password": "$2b$10$xw4YzQPGtrc.GRBY6txLlu9.HyvszH8GCuIan2ECc4vm6/XLkcwMO",
+        "category": "admin",
+        "avatar": "default.png"
+    },
+    {
+        "id": 2,
+        "first_name": "Juan Carlos",
+        "last_name": "Petrusa",
+        "email": "juancape@gmail.com",
+        "phone": "1165987642",
+        "password": "$2b$10$ULS4749.czkc7f1cLlAiV.d0sd/mmWxdOHkhfBd.bzqejtCHuHLeK",
+        "category": "active",
+        "avatar": "avatar 1592177612902.png"
+    }
+]

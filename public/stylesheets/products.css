@@ -1,0 +1,87 @@
+/*====== Variables ======
+:root {
+  --orange:#f58220;
+  --yellow: #EAC926;
+  --dark-blue: #03264C;
+  --light-blue: #1259c3;
+  --gray: #666666;
+  --light-gray: #ebebeb;
+  --green: #39b54a;
+  --base-font-family: 'Hind', sans-serif
+}*/
+
+
+/*====== Basics ======*/
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+hr {
+  border: none;
+  border-bottom: solid 1px #ebebeb;
+}
+/*Basics*/
+
+.products-wrapper{
+    margin-top: 0;
+}
+.product-title{
+    font-size: 10px;
+    font-weight: 400;
+    text-align: left;
+    color: #666666;
+    border-top: none;
+    padding-top: 0;
+}
+
+/*====== Media-Queries ======*/
+@media (min-width: 768px) {
+  .product-title{
+    font-size: 17px;
+  }
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+@media (min-width: 1440px) {
+}

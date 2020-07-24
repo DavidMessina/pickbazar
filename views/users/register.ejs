@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<head>
+   <link rel="stylesheet" href="/stylesheets/loginRegister.css">
+   
+</head>
+
+<body>
+   <%- include('../partials/headerNav') %>
+   
+   
+   
+   <div class="container">
+      <div class="row">
+         
+         <div class="col-12 col-md-6 offset-md-3 columna">
+            <div class="formulario">
+               
+               <h1>CREAR NUEVA CUENTA</h1>
+               <!--<h2 style="margin: 0">Si ya sos parte de Pick Bazar <a style="color:#f58220" href="/users/login">ingresa aqui</a></h2>
+               -->
+               <section class="log-reg">
+                  
+                  <% function buscarError(name){
+                     if(typeof errors != 'undefined'){
+                        let error = errors.filter(function(error){
+                           return error.param == name;
+                        });
+                        if(error.length == 0){
+                           let error = [{
+                              value: '',
+                              msg: '',
+                              param: '',
+                              location: ''
+                           }
+                           ];
+                           return error;
+                        }
+                        return error;
+                     }else{
+                        let error = [{
+                           value: '',
+                           msg: '',
+                           param: '',
+                           location: ''
+                        }
+                        ];
+                        return error;
+                     }
+                  }
+                  %>
+                  <form class="register" action="/users/register" method="POST" enctype="multipart/form-data">
+                     <label for="country">
+                        <h3>País de residencia (Solo Sudamerica):</h3>
+                     </label>
+                     <select name="country" id="country" class="input country" required>
+                        <option value="0"></option>
+                     </select>
+                     
+                     <label for="firstName">
+                        <h3>Nombre (*):</h3>
+                     </label>
+                     <input class="input firstName"  type="text" required id="firstName" name="firstName" value="<%= (typeof datos != 'undefined') ? datos.firstName : ''  %>">
+                     <span class="firstName" style="color: red;font-size: 12px;"><%= buscarError('firstName')[0].msg %></span>
+                     <label for="lastName">
+                        <h3>Apellido (*):</h3>
+                     </label>
+                     <input class="input lastName" type="text" required id="lastName" name="lastName" value="<%= (typeof datos != 'undefined') ? datos.lastName : ''  %>">
+                     <span class="lastName" style="color: red;font-size: 12px;"><%= buscarError('lastName')[0].msg %></span>
+                     <label for="email">
+                        <h3>Email (*):</h3>
+                     </label>
+                     <input class="input email" type="email" required id="email" name="email" value="<%= (typeof datos != 'undefined') ? datos.email : ''  %>">
+                     <span class="email" style="color: red;font-size: 12px;"><%= buscarError('email')[0].msg %></span>
+                     <label for="phone">
+                        <h3>Telefono:</h3>
+                     </label>
+                     <input class="input phone" type="tel" required id="phone" name="phone" value="<%= (typeof datos != 'undefined') ? datos.phone : ''  %>">
+                     <span class="phone" style="color: red;font-size: 12px;"><%= buscarError('phone')[0].msg %></span>
+                     <label for="password">
+                        <h3>Contraseña (Entre 8 y 12 caracteres):</h3>
+                     </label>
+                     <input class="input password" type="password" required id="password" name="password" value="">
+                     <span class="password" style="color: red;font-size: 12px;"><%= buscarError('password')[0].msg %></span>
+                     <label for="passwordConfirm">
+                        <h3>Confirmar contraseña (*):</h3>
+                     </label>
+                     <input class="input passwordConfirm" type="password" required id="passwordConfirm" name="passwordConfirm">
+                     <span class="passwordConfirm" style="color: red;font-size: 12px;"><%= buscarError('passwordConfirm')[0].msg %></span>
+                     <label for="avatar">
+                        <h3>Imágen de perfil:</h3>
+                     </label>
+                     <input class="input avatar" type="file" name="avatar" value="Hola">
+                     <span style="color: red;font-size: 12px;"><%= buscarError('avatar')[0].msg %></span>
+                     
+                     <div class="align"><input class="btn-login black" type="submit" value="CREAR CUENTA"></div>
+                  </form>
+                  
+               </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   
+   
+   
+   
+   <%- include('../partials/footer') %>
+   <script src="/javascripts/validateUser.js"></script>
+   <script src="/javascripts/fetchCountry.js"></script>
+      
+</body>
+
+</html>

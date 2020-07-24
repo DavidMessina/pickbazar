@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/headerNav') %>
+    
+    <div class="container -products-wrapper">
+        <div class="row">
+            
+            <div class="col-6 offset-3 col-sm-4 offset-sm-4 col-lg-4 offset-lg-4">
+                <section class="product-box">
+                    <a href="/users/edit">
+                        <article class="profile_data">
+                            <h2> Bienvenido/a <%=user[0].first_name%> <%=user[0].last_name%></h2>
+                            <figure class="product-box_image">
+                                <img src="/images/users/<%=user[0].avatar%>" alt="imagen de <%=user[0].avatar%>"">
+                            </figure>
+                            
+                            <h2> Edita tu perfil </h2>
+                            <p > <%=user[0].email%></p>
+                        </article>
+                    </a>
+                                       
+                </section>
+                <div class="orderButton"> 
+                    <form action="/users/logout" method="POST">
+                        <button id="logout" class="send" type="submit">Logout</button>
+                    </form>
+                    
+                    <form action="/users/delete?_method=DELETE" method="POST">
+                        <button id="delete" class="send" type="submit">Darse de baja</button>
+                    </form>    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <%- include('../partials/footer') %>
+</body>
+
+</html>

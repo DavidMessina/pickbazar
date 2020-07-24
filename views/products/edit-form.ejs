@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/products-create.css">
+    </head>
+
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <div class="head col-12">
+                <i class="menu fas fa-bars"></i>
+                <h1 class="title">EDITAR PRODUCTO</h1>
+            </div>
+        </header>
+    </div>
+    <section class="container">
+        <% function buscarError(name){
+            //console.log("buscarError");
+            if(typeof errors != 'undefined'){
+                  let error = errors.filter(function(error){
+                     return error.param == name;
+                  });
+                  //console.log(errors);
+                  if(error.length == 0){
+                     let error = [{
+                     value: '',
+                     msg: '',
+                     param: '',
+                     location: ''
+                  }
+                  ];
+                  //console.log(error);
+                  return error;
+                  }
+                  return error;
+            }else{
+                  let error = [{
+                     value: '',
+                     msg: '',
+                     param: '',
+                     location: ''
+                  }
+                  ];
+                  //console.log(error);
+                  return error;
+            }
+         }
+         %>
+        <div class="left">
+            <div class="sec2">
+                <form class="productValidate" action="/products/edit/<%=product.id%>?_method=PUT" enctype="multipart/form-data" method="POST">
+                    <div class="form">
+                        <select name="category" id="category" class="select category" required>
+                            <option value="<%=product.category_id%>"><%= product.Category.name %></option>
+                            <% categories.forEach((cat) => { %>
+                                <% if (cat.id != product.Category.id) {%>
+                                <option value="<%= cat.id %>"><%= cat.name %></option>
+                            <%} }) %>
+                        </select>
+                        <br>
+                        <span class="category" style="color: red;font-size: 12px;"><%= buscarError('category')[0].msg %></span>
+                        <select name="subcategory" id="subcategory" class="select subCategory" required>
+                            <option value="<%=product.subcategory_id%>"><%= product.Subcategory.name %></option>
+                            <% subCategories.forEach((subcat) => { %>
+                                <% if (subcat.id != product.Subcategory.id) {%>
+                                <option value="<%= subcat.id %>"><%= subcat.name %></option>
+                            <%} }) %>
+                        </select>
+                        <br>
+                        <span class="subCategory" style="color: red;font-size: 12px;"><%= buscarError('subCategory')[0].msg %></span>
+                    </div>
+            </div>
+            <div class="sec4">
+
+                <div class="form2">
+                    <label class="label-block" for="name">NOMBRE DEL PRODUCTO</label>
+                    <input class="input-block name" type="text" required name="name" value="<%= (typeof datos != 'undefined') ? datos.name : product.name  %>">
+                    <span class="name" style="color: red;font-size: 12px;"><%= buscarError('name')[0].msg %></span>
+                    
+                    <label class="label-block " for="description">DESCRIPCION</label>
+                    <textarea class="description" name="description" id="desc" required cols="30" rows="10" value="<%= (typeof datos != 'undefined') ? datos.description : product.description  %>"><%=product.description%></textarea>
+                    <span class="description" style="color: red;font-size: 12px;"><%= buscarError('description')[0].msg %></span>
+                </div>
+                <div class="form-price">
+                    <p class="font-price">
+                        <label for="price">PRECIO DE COSTO</label>
+                        <input class="input-price price" type="number" required name="price" value="<%=product.price%>">
+                    </p>
+                    <span class="price" style="margin-left: 24px; color: red;font-size: 12px;"><%= buscarError('price')[0].msg %></span>
+                    <p class="font-price">
+                        <label for="model">IVA</label>
+                        <select name="tax" id="" class="iva">
+                            <option value="<%=product.tax%>"><%=product.tax%></option>
+                            <option value="10.5">21</option>
+                            <option value="21">10,5</option>
+                        </select>
+                    </p>
+                    <p class="font-price">
+                        <label for="desc">DESCUENTO</label>
+                        <input class="input-price discount" type="number" required name="discount" value="<%=product.discount%>">
+                    </p>
+                    <span class="discount" style="margin-left: 24px; color: red;font-size: 12px;"><%= buscarError('discount')[0].msg %></span>
+                    <p class="submit">
+                        <input class="send" type="submit" value="GUARDAR CAMBIOS">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="sec3">
+                <div class="photo main-photo">
+                    <input type="file" name="mainPick" class="inputFile">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <span style="color: red;font-size: 12px;"><%= buscarError('mainPick')[0].msg %></span>
+                <div class="photo photo-sec">
+                    <input type="file" name="secondPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+                <div class="photo photo-sec">
+                    <input type="file" name="thirdPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+                <div class="photo photo-sec">
+                    <input type="file" name="fourthPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+    </section>
+    </form>
+<script src="/javascripts/validateProductEdit.js"></script>    
+</body>
+
+</html>

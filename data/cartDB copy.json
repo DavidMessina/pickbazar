@@ -1,0 +1,25 @@
+[
+	{
+		"id": 1,
+		"name": "Sarten antiadherente de 28cm",
+		"price": 5000,
+		"discount": 10,
+		"image": "sarten-antiadherente-28cm.jpg",
+		"units": 2
+		
+	}, {
+		"id": 2,
+		"name": "Cesto de residuos Black&Gold",
+		"price": 2800,
+		"discount": 15,
+		"image": "cesto-negro.jpg",
+		"units": 1
+	}, {
+		"id": 3,
+		"name": "Frasco de vidrio de 22cm.",
+		"price": 500,
+		"discount": 5,
+		"image": "frasco-vidrio-decal-22cm.jpg",
+		"units": 1
+	}
+]

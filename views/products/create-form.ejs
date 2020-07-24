@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/products-create.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <header class="row">
+            <div class="head col-12">
+                <i class="menu fas fa-bars"></i>
+                <h1 class="title">FORMULARIO DE CARGA INDIVIDUAL</h1>
+            </div>
+        </header>
+    </div>
+    <section class="container">
+        <% function buscarError(name){
+            if(typeof errors != 'undefined'){
+                  let error = errors.filter(function(error){
+                     return error.param == name;
+                  });
+                  if(error.length == 0){
+                     let error = [{
+                     value: '',
+                     msg: '',
+                     param: '',
+                     location: ''
+                  }
+                  ];
+                  return error;
+                  }
+                  return error;
+            }else{
+                  let error = [{
+                     value: '',
+                     msg: '',
+                     param: '',
+                     location: ''
+                  }
+                  ];
+                  return error;
+            }
+         }
+         %>
+        <div class="left">
+            <div class="sec2">
+                <form class="productValidate" action="/products/create" enctype="multipart/form-data" method="POST">
+                    <div class="form">
+                        <select name="category" id="category" class="select category" required>
+                            <option value="0">SELECCIONE CATEGORIA (*)</option>
+                            <% categories.forEach((cat) => { %>
+                                <option value="<%= cat.id %>"><%= cat.name %></option>
+                            <% }) %>
+                        </select>
+                        <br>
+                        <span class="category" style="color: red;font-size: 12px;"><%= buscarError('category')[0].msg %></span>
+                        <select name="subcategory" id="subcategory" class="select subCategory" required>
+                            <option value="0">SELECCIONE SUB CATEGORIA  (*)</option>
+                            <% subCategories.forEach((subcat) => { %>
+                                <option value="<%= subcat.id %>"><%= subcat.name %></option>
+                            <% }) %>
+                        </select>
+                        <br>
+                        <span class="subCategory" style="color: red;font-size: 12px;"><%= buscarError('subCategory')[0].msg %></span>
+                    </div>
+            </div>
+            <div class="sec4">
+
+                <div class="form2">
+                    <label class="label-block" for="name">NOMBRE DEL PRODUCTO  (*)</label>
+                    <input class="input-block name" type="text" required name="name" value="<%= (typeof datos != 'undefined') ? datos.name : ''  %>">
+                    <span class="name" style="color: red;font-size: 12px;"><%= buscarError('name')[0].msg %></span>
+                    
+                    <label class="label-block" for="brand">MARCA  (*)</label>
+                    <input class="input-block brand" type="text" required name="brand" value="<%= (typeof datos != 'undefined') ? datos.brand : ''  %>">
+                    <span class="brand" style="color: red;font-size: 12px;"><%= buscarError('brand')[0].msg %></span>
+                    
+                    <label class="label-block" for="description">DESCRIPCION  (*)</label>
+                    <textarea class="description" name="description" id="desc"  required cols="30" rows="10" value="<%= (typeof datos != 'undefined') ? datos.description : ''  %>"></textarea>
+                    <span class="description" style="color: red;font-size: 12px;"><%= buscarError('description')[0].msg %></span>
+                </div>
+
+                <div class="form-price">
+                    <p class="font-price">
+                        <label for="price">PRECIO DE COSTO  (*)</label>
+                        <input class="input-price price" type="number" required name="price" value="<%= (typeof datos != 'undefined') ? datos.price : ''  %>"> 
+                    </p>
+                    <span class="price" style="margin-left: 24px; color: red;font-size: 12px;"><%= buscarError('price')[0].msg %></span>
+                    <p class="font-price">
+                        <label for="model">IVA</label>
+                        <select name="tax" id="" class="iva">
+                            <option value="21">21</option>
+                            <option value="10.5">10,5</option>
+                        </select>
+                    </p>
+                    <p class="font-price">
+                        <label for="desc">DESCUENTO  (*)</label>
+                        <input class="input-price discount" type="number" required name="discount"value="<%= (typeof datos != 'undefined') ? datos.discount : ''  %>">
+                    </p>
+                    <span class="discount" style="margin-left: 24px; color: red;font-size: 12px;"><%= buscarError('discount')[0].msg %></span>
+                    <p class="submit">
+                        <input class="send" type="submit" value="CARGAR PRODUCTO">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+
+            <div class="sec3">
+                <div class="photo main-photo">
+                    <input type="file" name="mainPick" class="inputFile" value="">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <span style="color: red;font-size: 12px;"><%= buscarError('mainPick')[0].msg %></span>
+                <div class="photo photo-sec">
+                    <input type="file" name="secondPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+                <div class="photo photo-sec">
+                    <input type="file" name="thirdPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+                <div class="photo photo-sec">
+                    <input type="file" name="fourthPick" class="inputFile">
+                    <i class="fas fa-camera camera-sec"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <div class="row masive-charge">
+        <div class="head col-12">
+            <h1 class="title2">CARGA MASIVA</h1>
+        </div>
+    </div>
+    </form>
+    <footer class="container-fluid">
+        <div class="foot">
+            <i class="fas fa-file-upload"></i>
+            <h2 class="upload-text">Subir lista de excel</h2>
+        </div>
+    </footer>
+<script src="/javascripts/validateProduct.js"></script>
+</body>
+
+</html>

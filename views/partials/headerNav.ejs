@@ -1,0 +1,219 @@
+<header class="main-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 news">
+        <h3>Durante la cuarentena 3 cuotas sin interes</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" style="border-bottom: solid 1px #999;padding-bottom: 15px;">
+      <div class="col-3 col-md-2">
+        <a href="/" class="main-header_home-link">
+          <img src="/images/logo-pickBazar.jpg">
+        </a>
+      </div>
+
+      <div class="offset-1 col-8 col-md-9">
+        <div class="row search">
+
+          <div class="col-9 col-md-9">
+            <form action="/search" method="GET" class="search-form">
+              <input type="text" name="keywords" placeholder="Buscar" class="search-form_input">
+              <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <button class="offset-1 col-2 btn-toggle-navbar">
+            <i class="fa fa-chevron-down"></i>
+          </button>
+
+          <div class="col-9 col-md-3 login-cart">
+            <% if (userFound==undefined){%>
+            <a href="/users/register">Registro <i class="fas fa-address-card"></i></a>
+            <a class="cart" href="/users/login">Login <i class="fas fa-user"></i></a>
+
+            <%}else if (userFound!=undefined && cartItems==0){%>
+            <a href="/users/profile">Ver perfil <i class="fas fa-user"></i> <br>
+            <%=userFound[0].firstName + ' ' + userFound[0].lastName%> </a>
+            <a class="cart" href="/cart">Carrito <i class="fas fa-shopping-cart"></i> </a>
+
+            <%} else {%>  
+            <a href="/users/profile">Ver perfil <i class="fas fa-user"></i> <br>
+              <% console.log(userFound) %>
+              <%=userFound[0].firstName + ' ' + userFound[0].lastName%> </a>
+              <div class="login-cart" >
+              <a class="cart" href="/cart"><i class="fas fa-shopping-cart"></i> </a>
+              <div class="items"><%=cartItems%></div>
+              </div>  
+            <%}%>
+          </div>
+        </div>
+              
+          <nav class="row">
+                <div class="col-md-9 menu-wrapper">
+                  <div class="main-navbar">
+                    <a href="/products">CATÁLOGO</a>
+                  </div>
+                  <% cat.forEach(function(category){ %>
+            <div class="main-navbar">
+              <div class="ulSubcategory">
+              <a class="categoryTitle" href="/products/category/<%=category.id%>"><%=category.name.toUpperCase()%></a>
+              
+                <ul class="subcategory">
+                  <% subCat.forEach(function(subCategory){ %>
+                  <%if(subCategory.category_id==category.id){%>
+                  <li><a href="/products/subCategory/<%=subCategory.id%>"><%=subCategory.name.toUpperCase()%></a></li>
+                  <%}%>
+                      <%})%>
+                </ul>
+              </div>
+              
+            </div>
+            <%})%>
+            <div class="main-navbar">
+              <a href="/products/sale">PROMOCIONES</a>
+            </div>
+
+            <% if (userFound==undefined || userFound[0].userType != "admin"){%>
+            <div class="main-navbar">
+            </div>
+            <%}else{%>
+            <div class="main-navbar">
+              <a style="color:#f58220;" href="/products/create" target="_blank">ALTA PRODUCTO</a>
+            </div>
+            <%}%>
+                </div>
+          </nav>
+                        
+          <nav class="mobile-navbar">
+            <% cat.forEach(function(category){ %>
+            <span>
+              <a href="/products/category/<%=category.id%>">
+                <h3><%=category.name.toUpperCase()%></h3>
+              </a>
+              <h3>>></h3>
+            </span>
+            <ul class="subcategory">
+              <% subCat.forEach(function(subCategory){ %>
+              <%if(subCategory.category_id==category.id){%>
+              <li><a href="/products/subCategory/<%=subCategory.id%>"><%=subCategory.name.toUpperCase()%></a></li>
+              <%}%>
+              <%})%>
+            </ul>
+            <%})%>
+
+            <span>
+              <a href="/products/sale">
+                <h3>PROMOCIONES</h3>
+              </a>
+              <h3>>></h3>
+            </span>
+
+            <% if (userFound==undefined || userFound[0].userType != "admin"){%>
+            <span>
+            </span>
+            <%}else{%>
+            <span>
+              <a style="color:#ffffff" href="/products/create" target="_blank">
+                <h3>ALTA PRODUCTO</h3>
+              </a>
+              <h3 style="color:#ffffff">>></h3>
+            </span>
+            <%}%>
+          </nav>
+                    
+                    
+      </div>
+    </div>
+  </div>
+  <script src="/javascripts/navBar.js"></script>
+</header>
+
+<!-- MAIN-NAVBAR
+<div class="main-navbar">
+<a href="/products/category/1">COCINA</a>
+<ul class="generico">
+<li><a href="/products/subCategory/1">CACEROLAS</a></li>
+<li><a href="/products/subCategory/2">PAVAS</a></li>
+<li><a href="/products/subCategory/3">JARROS</a></li>
+<li><a href="/products/subCategory/4">FRASCOS</a></li>
+<li><a href="/products/subCategory/5">SARTENES</a></li>
+<li><a href="/products/subCategory/6">ACCESORIOS</a></li>
+</ul>
+</div>
+<div class="main-navbar">
+<a href="/products/category/2">BAÑO</a>
+<ul class="generico">
+<li><a href="/products/subCategory/7">CESTOS</a></li>
+<li><a href="/products/subCategory/8">CANASTOS</a></li>
+<li><a href="/products/subCategory/9">ALFOMBRAS</a></li>
+<li><a href="/products/subCategory/10">LIMAS</a></li>
+<li><a href="/products/subCategory/11">ESPONJAS</a></li>
+</ul>
+</div>
+<div class="main-navbar">
+<a href="/products/category/3">DECORACIÓN</a>
+<ul class="generico">
+<li><a href="/products/subCategory/12">RELOJES</a></li>
+<li><a href="/products/subCategory/13">ESPEJOS</a></li>
+<li><a href="/products/subCategory/14">CUADROS</a></li>
+<li><a href="/products/subCategory/15">VELAS</a></li>
+<li><a href="/products/subCategory/16">FAROLES</a></li>
+</ul>
+</div>
+<div class="main-navbar">
+<a href="/products/category/4">LIMPIEZA</a>
+<ul class="generico">
+<li><a href="/products/subCategory/17">MOPAS</a></li>
+</ul>
+</div>
+-->
+
+<!-- MOBIILE-NAVBAR
+<span><a href="/products/category/1">
+<h3>COCINA</h3>
+</a>
+<h3>>></h3>
+</span>
+<ul class="cocina">
+<li><a href="/products/subCategory/1">CACEROLAS</a></li>
+<li><a href="/products/subCategory/2">PAVAS</a></li>
+<li><a href="/products/subCategory/3">JARROS</a></li>
+<li><a href="/products/subCategory/4">FRASCOS</a></li>
+<li><a href="/products/subCategory/5">SARTENES</a></li>
+<li><a href="/products/subCategory/6">ACCESORIOS</a></li>
+</ul>
+<span><a href="/products/category/2">
+<h3>BAÑO</h3>
+</a>
+<h3>>></h3>
+</span>
+<ul class="baño">
+<li><a href="/products/subCategory/7">CESTOS</a></li>
+<li><a href="/products/subCategory/8">CANASTOS</a></li>
+<li><a href="/products/subCategory/9">ALFOMBRAS</a></li>
+<li><a href="/products/subCategory/10">LIMAS</a></li>
+<li><a href="/products/subCategory/11">ESPONJAS</a></li>
+</ul>
+<span><a href="/products/category/3">
+<h3>DECORACIÓN</h3>
+</a>
+<h3>>></h3>
+</span>
+<ul class="decoracion">
+<li><a href="/products/subCategory/12">RELOJES</a></li>
+<li><a href="/products/subCategory/13">ESPEJOS</a></li>
+<li><a href="/products/subCategory/14">CUADROS</a></li>
+<li><a href="/products/subCategory/15">VELAS</a></li>
+<li><a href="/products/subCategory/16">FAROLES</a></li>
+</ul>
+<span><a href="/products/category/4">
+<h3>LIMPIEZA</h3>
+</a>
+<h3>>></h3>
+</span>
+<ul class="limpieza">
+<li><a href="/products/subCategory/17">MOPAS</a></li>
+</ul>
+-->

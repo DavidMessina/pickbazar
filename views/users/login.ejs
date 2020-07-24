@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<head>
+   <link rel="stylesheet" href="/stylesheets/loginRegister.css">
+</head>
+
+<body>
+   <%- include('../partials/headerNav') %>
+   
+   
+   
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-md-6 offset-md-3 columna">
+            <div class="formulario">
+               <h1>INGRESÁ A TU CUENTA</h1>
+               <section class="log-reg">
+                  <% if (typeof errors != 'undefined'){%>
+                     <p style="color: crimson"><%=errors[0].msg%></p>
+                     <%}%>
+                     
+                     <form class="login" action="/users/login" method="POST">
+                        <label for="email">
+                           <h3>Email:</h3>
+                        </label>
+                        <input class="input" type="email" id="email" name="email" value="">
+                        
+                        <label for="password">
+                           <h3>Contraseña:</h3>
+                        </label>
+                        <input class="input password" type="password" id="password" name="password">
+                        <span class="password" style="color: red;font-size: 12px;"></span>
+                        
+                           <label class="remember" for="remember">
+                              <h3>Recordame</h3>
+                              <input type="checkbox" name="remember" checked="checked">
+                              <span class="checkmark"></span>
+                           </label>
+                           
+                        <div class="align">
+                           <button class="btn-login black" type="submit">INGRESAR</button>
+                        </div>
+                     </form>
+                     <form class="align"> <input type="submit" class="btn-login orange" value="INGRESAR CON FACEBOOK">
+                     </form>
+                     <form class="align"> <input type="submit" class="btn-login orange" value="INGRESAR CON GOOGLE+">
+                     </form>
+                  </section>
+               </div>
+            </div>
+            
+         </div>
+      </div>
+      
+      <%- include('../partials/footer') %>
+      <script src="/javascripts/validateLogin.js"></script>
+
+   </body>
+   
+   </html>
