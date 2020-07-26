@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2020 at 08:37 PM
+-- Generation Time: Jul 25, 2020 at 01:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -201,7 +201,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `tax`,
 (6, 'Mopa con balde centrífugo', 'Mopa con brazo extensible y balde centrífugo', '5000.00', 10, 21, 1, 4, 17, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
 (7, 'Cubiertero de bamboo', 'Cubiertero de bamboo con 5 divisiones - 30cm. x  40cm', '5000.00', 0, 21, 1, 1, 6, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
 (8, 'Pava silvadora acero', 'Pava silvadora acero color cobre - 3 litros de capacidad', '5000.00', 0, 21, 1, 1, 2, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
-(9, 'Cacerolas antiadherentes - set de 3 piezas', 'Set cacerolas antiadherentes con tapa de vidrio - 3 de piezas 20, 22 y 24cm', '5000.00', 0, 21, 1, 1, 1, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
+(9, 'Cacerolas antiadherentes - set de 3 piezas', 'Set cacerolas antiadherentes con tapa de vidrio - 3 piezas de 20, 22 y 24cm', '5000.00', 0, 21, 1, 1, 1, 1, NULL, '2020-07-25 11:36:03', '2020-07-25 11:36:03'),
 (10, 'Canasto laundry de tela', 'Canasto laundry de tela de 58cm de diámetro', '5000.00', 0, 21, 1, 2, 8, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
 (11, 'Cesto de residuos Elegance', 'Cesto de residuos Elegance con pedal - capacidad 3 litros', '5000.00', 0, 21, 1, 2, 7, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),
 (12, 'Bandeja desayunador', 'Bandeja desayunador de bamboo con patas rebatibles', '5000.00', 0, 21, 1, 1, 6, 1, NULL, '2020-07-01 18:51:22', '2020-07-01 18:51:22'),

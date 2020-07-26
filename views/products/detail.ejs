@@ -83,26 +83,7 @@
                         <% } %>
                         <% } %>
                         <% fourthImage = 'logo-pickBazar.jpg' %>
-
-                        <!-- Si el producto trae 4 imagenes -->
-
-                        <% } else if(product.Image.length == 4) { %>
-                        <% for (let i = 0; i < product.Image.length; i++) { %>
-                        <% if (product.Image[i].main == 1) { %>
-                        <% mainImage = product.Image[i].name %>
                         <% } %>
-                        <% if (product.Image[i].main == 2) { %>
-                        <% secondImage = product.Image[i].name %>
-                        <% } %>
-                        <% if (product.Image[i].main == 3) { %>
-                        <% thirdImage = product.Image[i].name %>
-                        <% } %>
-                        <% if (product.Image[i].main == 4) { %>
-                        <% fourthImage = product.Image[i].name %>
-                        <% } %>
-                        <% } %>
-                        <% } %>
-
 
                         <div class="col-md-3 small-img-box">
                             <div class="img-small">
@@ -136,17 +117,17 @@
                         </div>
                         <%}else{%>
                         <div class="crud">
-                            <form action="/products/delete/<%=product.id%>?_method=DELETE" method="POST">
-                                <button id="delete" class="send" type="submit">ELIMINAR</button>
-                            </form>
-                            <a id="edit" class="send" href='/products/edit/<%=product.id%>' target="_blank">
+                            <a id="edit" class="" href='/products/edit/<%=product.id%>' target="_blank">
                                 <div>EDITAR</div>
                             </a>
+                            <form action="/products/delete/<%=product.id%>?_method=DELETE" method="POST">
+                                <button id="delete" class="" type="submit">ELIMINAR</button>
+                            </form>
                         </div>
                         <%}%>
-                                    </div>
+                        </div>
                                                                               
-                                            <form class="add-box" action="/cart/add/<%=product.id%>">
+                        <form class="add-box" action="/cart/add/<%=product.id%>">
                         <button class="add1" type="submit">Agregar al carrito</button>
                         <input class="add2" type="number" name="item" value="1">
                         </form>

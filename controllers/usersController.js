@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { check, validationResult, body } = require('express-validator');
 const db = require ("../database/models")
 const { Op } = require("sequelize");
+const sequelize = db.sequelize;
 
 //const usersDB = path.join(__dirname, '../data/usersDB.json');
 //let users = JSON.parse(fs.readFileSync(usersDB, 'utf-8'));
@@ -22,6 +23,7 @@ const controller = {
 			let errors = validationResult(req);
 			
 			let userFound;
+
 			if (!errors.isEmpty()) {
 				res.render('users/login', { errors: errors.errors });
 			}
@@ -29,21 +31,14 @@ const controller = {
 			userFound = users.filter(function (user) {
 				return user.email == req.body.email && 
 				bcrypt.compareSync(req.body.password, user.password)
-				
 			});
-			
-			//console.log(userFound)
 
 			if (userFound == "" || userFound[0].state==0) {
 				res.render('users/login', { errors: [{ msg: "Credenciales invalidas" }] });
 				
-				//console.log(userFound);
-				//PRENDE SESION PARA EL USUARION LOGEADO
-				//GUARDA AL USUARIO LOGUEADO PARA USARLOS EN LAS VISTAS
 			} else {
-				console.log(userFound);
+				//PRENDE SESION PARA EL USUARION LOGEADO
 				req.session.userFound = userFound;
-				//res.locals.userFound = userFound[0];
 				
 				if (req.body.remember != undefined){
 					res.cookie('remember', userFound[0].email, {maxAge: 180000000})
@@ -67,7 +62,30 @@ const controller = {
 	// Detail - Detail from one user
 	profile: (req, res, next) => {
 		let user = req.session.userFound
-		res.render('./users/profile', { user: user })
+
+		db.Cart.findAll({
+			where: {
+				user_id: req.session.userFound[0].id,
+				state: 0
+			}
+		})
+		.then((carts) => {
+			if (carts) {
+				sequelize.query("SELECT p.id, p.name, cp.cart_id, cp.price, cp.discount, cp.subtotal, cp.units, c.total, c.state, i.name as image, c.updated_at FROM carts as c LEFT OUTER JOIN (cart_product as cp INNER JOIN products as p ON p.id = cp.product_id) ON c.id = cp.cart_id INNER JOIN images as i ON i.product_id=p.id WHERE i.main=1 and c.user_id=" + req.session.userFound[0].id + " and c.state=0 order by cart_id asc")
+					.then((cartProducts) => {
+						
+						res.render('./users/profile', { user: user, product:cartProducts[0]});
+					})
+				
+			}
+			else {
+				let cartProducts = 0
+				res.render('./users/profile', { user: user, product:cartProducts });
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		})
 	},
 	
 	// Create - Form to create
@@ -81,16 +99,7 @@ const controller = {
 		let errors = validationResult(req);
 		
 		if (errors.isEmpty()) {
-			/*let newUser;
-			let userIdMaker = 0;
-			for (let i = 0; i < users.length; i++) {
-				if (users[i].id > userIdMaker) {
-					userIdMaker = users[i].id;
-				}
-			}*/
 			if (req.files == '') {
-				//newUser = {
-				//id: userIdMaker + 1,
 				db.User.create({
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
@@ -113,8 +122,6 @@ const controller = {
 					console.log(errors);
 				})
 			} else {
-				//newUser = {
-				//id: userIdMaker + 1,
 				db.User.create({	
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
@@ -158,7 +165,6 @@ const controller = {
 		if (errors.isEmpty()) {		
 			if (req.files == '') {
 				db.User.update({
-					//id: user[0].id,
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
 					email: req.body.email,
@@ -178,7 +184,6 @@ const controller = {
 				
 			} else {
 				db.User.update({
-					//id: user[0].id,
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
 					email: req.body.email,
@@ -196,15 +201,6 @@ const controller = {
 					}
 				});
 			}
-			
-			/*for (let i = 0; i < users.length; i++) {
-				if (users[i].id == user[0].id) {
-					users[i] = userEdited;
-				}
-			}
-			req.session.userFound = [userEdited];
-			fs.writeFileSync(usersDB, JSON.stringify(users));*/
-			
 			res.redirect('/users/login');
 			
 		} else {
@@ -215,14 +211,6 @@ const controller = {
 	
 	// Delete - change user category to 'inactive'
 	destroy: (req, res, next) => {
-		/*//cambia categoría a inactivo
-		req.session.userFound[0].category = "inactive"
-		//reemplaza en en la base de datos de usuarios por el modificado
-		for (let i = 0; i < users.length; i++) {
-			if (users[i].id == req.session.userFound[0].id) {
-				users[i] = req.session.userFound[0];
-			}
-		}*/
 		let user = req.session.userFound;
 		db.User.update({
 			state: 0
@@ -232,13 +220,10 @@ const controller = {
 			}
 		})
 		.then(()=>{
-			//console.log(user[0].state);
-			
-			//cierra sesion
+		//cierra sesion
 		req.session.destroy();
+		//Borra cookie
 		res.clearCookie('remember')
-		//escribo en el JSON
-		//fs.writeFileSync(usersDB, JSON.stringify(users));
 		res.redirect('/users/login');
 		})
 		

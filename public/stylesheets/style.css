@@ -82,7 +82,7 @@ font-size: 2em;
   padding-left: 5px;
 }
 .profile_data p {
-  font-size: 1.5em;
+  font-size: 12px;
   line-height: 1.5em;
   width: 100%;
   color: #666;
@@ -92,6 +92,17 @@ font-size: 2em;
   padding: 0 5px;
   min-height: 45px;
 }
+h2 {
+  font-size: 2em;
+  font-weight: 300;
+  margin: 10px 0 10px 0;
+}
+h3 {
+  font-size: 1.5em;
+  font-weight: 300;
+  margin: 5px 0 10px 0;
+}
+  
 
 /*====== Main Header ======*/
 .main-header {

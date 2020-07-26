@@ -13,7 +13,6 @@
           <img src="/images/logo-pickBazar.jpg">
         </a>
       </div>
-
       <div class="offset-1 col-8 col-md-9">
         <div class="row search">
 
@@ -38,9 +37,8 @@
             <%=userFound[0].firstName + ' ' + userFound[0].lastName%> </a>
             <a class="cart" href="/cart">Carrito <i class="fas fa-shopping-cart"></i> </a>
 
-            <%} else {%>  
+            <%} else if (userFound!=undefined && cartItems!=0){%>  
             <a href="/users/profile">Ver perfil <i class="fas fa-user"></i> <br>
-              <% console.log(userFound) %>
               <%=userFound[0].firstName + ' ' + userFound[0].lastName%> </a>
               <div class="login-cart" >
               <a class="cart" href="/cart"><i class="fas fa-shopping-cart"></i> </a>
@@ -51,7 +49,7 @@
         </div>
               
           <nav class="row">
-                <div class="col-md-9 menu-wrapper">
+                <div class="col-md-11 col-lg-9 menu-wrapper">
                   <div class="main-navbar">
                     <a href="/products">CATÁLOGO</a>
                   </div>
@@ -129,91 +127,3 @@
   </div>
   <script src="/javascripts/navBar.js"></script>
 </header>
-
-<!-- MAIN-NAVBAR
-<div class="main-navbar">
-<a href="/products/category/1">COCINA</a>
-<ul class="generico">
-<li><a href="/products/subCategory/1">CACEROLAS</a></li>
-<li><a href="/products/subCategory/2">PAVAS</a></li>
-<li><a href="/products/subCategory/3">JARROS</a></li>
-<li><a href="/products/subCategory/4">FRASCOS</a></li>
-<li><a href="/products/subCategory/5">SARTENES</a></li>
-<li><a href="/products/subCategory/6">ACCESORIOS</a></li>
-</ul>
-</div>
-<div class="main-navbar">
-<a href="/products/category/2">BAÑO</a>
-<ul class="generico">
-<li><a href="/products/subCategory/7">CESTOS</a></li>
-<li><a href="/products/subCategory/8">CANASTOS</a></li>
-<li><a href="/products/subCategory/9">ALFOMBRAS</a></li>
-<li><a href="/products/subCategory/10">LIMAS</a></li>
-<li><a href="/products/subCategory/11">ESPONJAS</a></li>
-</ul>
-</div>
-<div class="main-navbar">
-<a href="/products/category/3">DECORACIÓN</a>
-<ul class="generico">
-<li><a href="/products/subCategory/12">RELOJES</a></li>
-<li><a href="/products/subCategory/13">ESPEJOS</a></li>
-<li><a href="/products/subCategory/14">CUADROS</a></li>
-<li><a href="/products/subCategory/15">VELAS</a></li>
-<li><a href="/products/subCategory/16">FAROLES</a></li>
-</ul>
-</div>
-<div class="main-navbar">
-<a href="/products/category/4">LIMPIEZA</a>
-<ul class="generico">
-<li><a href="/products/subCategory/17">MOPAS</a></li>
-</ul>
-</div>
--->
-
-<!-- MOBIILE-NAVBAR
-<span><a href="/products/category/1">
-<h3>COCINA</h3>
-</a>
-<h3>>></h3>
-</span>
-<ul class="cocina">
-<li><a href="/products/subCategory/1">CACEROLAS</a></li>
-<li><a href="/products/subCategory/2">PAVAS</a></li>
-<li><a href="/products/subCategory/3">JARROS</a></li>
-<li><a href="/products/subCategory/4">FRASCOS</a></li>
-<li><a href="/products/subCategory/5">SARTENES</a></li>
-<li><a href="/products/subCategory/6">ACCESORIOS</a></li>
-</ul>
-<span><a href="/products/category/2">
-<h3>BAÑO</h3>
-</a>
-<h3>>></h3>
-</span>
-<ul class="baño">
-<li><a href="/products/subCategory/7">CESTOS</a></li>
-<li><a href="/products/subCategory/8">CANASTOS</a></li>
-<li><a href="/products/subCategory/9">ALFOMBRAS</a></li>
-<li><a href="/products/subCategory/10">LIMAS</a></li>
-<li><a href="/products/subCategory/11">ESPONJAS</a></li>
-</ul>
-<span><a href="/products/category/3">
-<h3>DECORACIÓN</h3>
-</a>
-<h3>>></h3>
-</span>
-<ul class="decoracion">
-<li><a href="/products/subCategory/12">RELOJES</a></li>
-<li><a href="/products/subCategory/13">ESPEJOS</a></li>
-<li><a href="/products/subCategory/14">CUADROS</a></li>
-<li><a href="/products/subCategory/15">VELAS</a></li>
-<li><a href="/products/subCategory/16">FAROLES</a></li>
-</ul>
-<span><a href="/products/category/4">
-<h3>LIMPIEZA</h3>
-</a>
-<h3>>></h3>
-</span>
-<ul class="limpieza">
-<li><a href="/products/subCategory/17">MOPAS</a></li>
-</ul>
--->

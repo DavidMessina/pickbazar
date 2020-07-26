@@ -173,7 +173,6 @@ const controller = {
 
 	// Create -  Method to store
 	store: (req, res, next) => {
-		console.log(req.body.description);
 		let errors = validationResult(req);
 		if (errors.isEmpty()) {
 
@@ -211,7 +210,6 @@ const controller = {
 								let img1;
 								let img2;
 								let img3;
-								let img4;
 
 								if (req.files == '') {
 									img1 = db.Image.create({
@@ -219,24 +217,24 @@ const controller = {
 										main: 1,
 										product_id: newProduct.id
 									})
-									.then(() => {
-										res.redirect('/products');
-									})
-									.catch((error) => {
-										console.log(error);
-									})
+										.then(() => {
+											res.redirect('/products');
+										})
+										.catch((error) => {
+											console.log(error);
+										})
 								} else if (req.files.length == 1) {
 									img1 = db.Image.create({
 										name: req.files[0].filename,
 										main: 1,
 										product_id: newProduct.id
 									})
-									.then(() => {
-										res.redirect('/products');
-									})
-									.catch((error) => {
-										console.log(error);
-									})
+										.then(() => {
+											res.redirect('/products');
+										})
+										.catch((error) => {
+											console.log(error);
+										})
 								} else if (req.files.length == 2) {
 									img1 = db.Image.create({
 										name: req.files[0].filename,
@@ -249,12 +247,12 @@ const controller = {
 										product_id: newProduct.id
 									})
 									Promise.all([img1, img2])
-									.then(() => {
-										res.redirect('/products');
-									})
-									.catch((error) => {
-										console.log(error);
-									})
+										.then(() => {
+											res.redirect('/products');
+										})
+										.catch((error) => {
+											console.log(error);
+										})
 								} else if (req.files.length == 3) {
 									img1 = db.Image.create({
 										name: req.files[0].filename,
@@ -272,40 +270,12 @@ const controller = {
 										product_id: newProduct.id
 									})
 									Promise.all([img1, img2, img3])
-									.then(() => {
-										res.redirect('/products');
-									})
-									.catch((error) => {
-										console.log(error);
-									})
-								} else if (req.files.length == 4) {
-									img1 = db.Image.create({
-										name: req.files[0].filename,
-										main: 1,
-										product_id: newProduct.id
-									})
-									img2 = db.Image.create({
-										name: req.files[1].filename,
-										main: 2,
-										product_id: newProduct.id
-									})
-									img3 = db.Image.create({
-										name: req.files[2].filename,
-										main: 3,
-										product_id: newProduct.id
-									})
-									img4 = db.Image.create({
-										name: req.files[3].filename,
-										main: 4,
-										product_id: newProduct.id
-									})
-									Promise.all([img1, img2, img3, img4])
-									.then(() => {
-										res.redirect('/products');
-									})
-									.catch((error) => {
-										console.log(error);
-									})
+										.then(() => {
+											res.redirect('/products');
+										})
+										.catch((error) => {
+											console.log(error);
+										})
 								}
 
 							})
@@ -328,109 +298,80 @@ const controller = {
 								})
 
 
-								.then((newProduct) => {
-									console.log(req.files);
-									let img1;
-									let img2;
-									let img3;
-									let img4;
-	
-									if (req.files == '') {
-										img1 = db.Image.create({
-											name: 'logo-pickBazar.jpg',
-											main: 1,
-											product_id: newProduct.id
-										})
-										.then(() => {
-											res.redirect('/products');
-										})
-										.catch((error) => {
-											console.log(error);
-										})
-									} else if (req.files.length == 1) {
-										img1 = db.Image.create({
-											name: req.files[0].filename,
-											main: 1,
-											product_id: newProduct.id
-										})
-										.then(() => {
-											res.redirect('/products');
-										})
-										.catch((error) => {
-											console.log(error);
-										})
-									} else if (req.files.length == 2) {
-										img1 = db.Image.create({
-											name: req.files[0].filename,
-											main: 1,
-											product_id: newProduct.id
-										})
-										img2 = db.Image.create({
-											name: req.files[1].filename,
-											main: 2,
-											product_id: newProduct.id
-										})
-										Promise.all([img1, img2])
-										.then(() => {
-											res.redirect('/products');
-										})
-										.catch((error) => {
-											console.log(error);
-										})
-									} else if (req.files.length == 3) {
-										img1 = db.Image.create({
-											name: req.files[0].filename,
-											main: 1,
-											product_id: newProduct.id
-										})
-										img2 = db.Image.create({
-											name: req.files[1].filename,
-											main: 2,
-											product_id: newProduct.id
-										})
-										img3 = db.Image.create({
-											name: req.files[2].filename,
-											main: 3,
-											product_id: newProduct.id
-										})
-										Promise.all([img1, img2, img3])
-										.then(() => {
-											res.redirect('/products');
-										})
-										.catch((error) => {
-											console.log(error);
-										})
-									} else if (req.files.length == 4) {
-										img1 = db.Image.create({
-											name: req.files[0].filename,
-											main: 1,
-											product_id: newProduct.id
-										})
-										img2 = db.Image.create({
-											name: req.files[1].filename,
-											main: 2,
-											product_id: newProduct.id
-										})
-										img3 = db.Image.create({
-											name: req.files[2].filename,
-											main: 3,
-											product_id: newProduct.id
-										})
-										img4 = db.Image.create({
-											name: req.files[3].filename,
-											main: 4,
-											product_id: newProduct.id
-										})
-										Promise.all([img1, img2, img3, img4])
-										.then(() => {
-											res.redirect('/products');
-										})
-										.catch((error) => {
-											console.log(error);
-										})
-									}
-	
-								})
+									.then((newProduct) => {
+										console.log(req.files);
+										let img1;
+										let img2;
+										let img3;
+
+										if (req.files == '') {
+											img1 = db.Image.create({
+												name: 'logo-pickBazar.jpg',
+												main: 1,
+												product_id: newProduct.id
+											})
+												.then(() => {
+													res.redirect('/products');
+												})
+												.catch((error) => {
+													console.log(error);
+												})
+										} else if (req.files.length == 1) {
+											img1 = db.Image.create({
+												name: req.files[0].filename,
+												main: 1,
+												product_id: newProduct.id
+											})
+												.then(() => {
+													res.redirect('/products');
+												})
+												.catch((error) => {
+													console.log(error);
+												})
+										} else if (req.files.length == 2) {
+											img1 = db.Image.create({
+												name: req.files[0].filename,
+												main: 1,
+												product_id: newProduct.id
+											})
+											img2 = db.Image.create({
+												name: req.files[1].filename,
+												main: 2,
+												product_id: newProduct.id
+											})
+											Promise.all([img1, img2])
+												.then(() => {
+													res.redirect('/products');
+												})
+												.catch((error) => {
+													console.log(error);
+												})
+										} else if (req.files.length == 3) {
+											img1 = db.Image.create({
+												name: req.files[0].filename,
+												main: 1,
+												product_id: newProduct.id
+											})
+											img2 = db.Image.create({
+												name: req.files[1].filename,
+												main: 2,
+												product_id: newProduct.id
+											})
+											img3 = db.Image.create({
+												name: req.files[2].filename,
+												main: 3,
+												product_id: newProduct.id
+											})
+											Promise.all([img1, img2, img3])
+												.then(() => {
+													res.redirect('/products');
+												})
+												.catch((error) => {
+													console.log(error);
+												})
+										}
+
+									})
 
 
 							})
@@ -459,130 +400,6 @@ const controller = {
 		}
 	},
 
-
-
-	/* 		db.Product.create({
-		name: req.body.name,
-		description: req.body.description,
-		price: Number(req.body.price),
-		discount: Number(req.body.discount),
-		tax: req.body.tax,
-		state: 1,
-		category_id: req.body.category,
-		subcategory_id: req.body.subcategory,
-		
-		brand_id: req.body.brand
-	})
-	.then(() => {
-		res.redirect('/products');
-	})
-	.catch((error) => {
-		console.log(error);
-	})
-}, */
-
-	/* let newProduct;
-	let productIdMaker = 0;
-	for (let i = 0; i < products.length; i++) {
-		if (products[i].id > productIdMaker) {
-			productIdMaker = products[i].id;
-		}
-	}
-	
-	if (req.files == "" && req.files[1] == undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		newProduct = {
-			name: req.body.name,
-			description: req.body.description,
-			price: Number(req.body.price),
-			discount: Number(req.body.discount),
-			tax: req.body.tax,
-			state: 1,
-			category_id: req.body.pickCategory,
-			subcategory_id: req.body.pickSubCategory,
-			brand_id: req.body.brand},
-			
-			
-			image: 'logo-pickBazar.jpg',
-			secondPick: '',
-			thirdPick: '',
-			fourthPick: '',
-			important: 'new',
-			
-		}
-	} else if (req.files[0] != undefined && req.files[1] == undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		newProduct = {
-			id: productIdMaker + 1,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			image: req.files[0].filename,
-			secondPick: '',
-			thirdPick: '',
-			fourthPick: '',
-			important: 'new',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		newProduct = {
-			id: productIdMaker + 1,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: '',
-			fourthPick: '',
-			important: 'new',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] != undefined && req.files[3] == undefined) {
-		newProduct = {
-			id: productIdMaker + 1,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: req.files[2].filename,
-			fourthPick: '',
-			important: 'new',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] != undefined && req.files[3] != undefined) {
-		newProduct = {
-			id: productIdMaker + 1,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: req.files[2].filename,
-			fourthPick: req.files[3].filename,
-			important: 'new',
-			discount: Number(req.body.discount)
-		}
-	}
-	products.push(newProduct);
-	fs.writeFileSync(productsDB, JSON.stringify(products));
-	res.redirect('/products');
-}, */
-
 	// Update - Form to edit
 	edit: (req, res, next) => {
 
@@ -591,10 +408,15 @@ const controller = {
 		let product = db.Product.findByPk(req.params.productId, {
 			include: [{ association: 'Category' }, { association: 'Subcategory' }]
 		})
+		let images = db.Image.findAll({
+			where: {
+				product_id: req.params.productId
+			}
+		})
 
-		Promise.all([categories, subCategories, product])
-			.then(([categories, subCategories, product]) => {
-				res.render("./products/edit-form", { categories, subCategories, product })
+		Promise.all([categories, subCategories, product, images])
+			.then(([categories, subCategories, product, images]) => {
+				res.render("./products/edit-form", { categories, subCategories, product, images })
 			})
 			.catch((error) => {
 				console.log(error);
@@ -621,29 +443,378 @@ const controller = {
 					id: req.params.productId
 				}
 			})
-				.then((productEdited) => {
-					//console.log(req.params.productId);
-					//console.log(productEdited[0].id);
 
-					db.Image.update({
-						name: req.files[0].filename,
-						main: 1,
-						product_id: req.params.productId
-					}, {
+				.then(() => {
+					let images = db.Image.findAll({
 						where: {
 							product_id: req.params.productId
 						}
 					})
-				}).catch((error) => {
-					console.log(error);
+					return images;
 				})
 
-				.then(() => {
-					res.redirect('/products/detail/' + req.params.productId)
+
+				.then((images) => {
+
+					let img1;
+					let img2;
+					let img3;
+
+					// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 1 \\
+
+					if (images.length == 1) {
+
+						// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 1 \\
+						// Y NO SE EDITA NINGUNA IMAGEN \\
+
+						if (req.files == '') {
+							img1 = db.Image.update({
+								name: 'logo-pickBazar.jpg',
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 1 \\
+							// Y EN LA EDICION SE MODIFICA SOLO UNA \\
+
+						} else if (req.files.length == 1) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 1 \\
+							// Y EN LA EDICION SE MODIFICAN DOS \\
+
+
+						} else if (req.files.length == 2) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.create({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							})
+							Promise.all([img1, img2])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 1 \\
+							// Y EN LA EDICION SE MODIFICAN TRES \\
+
+						} else if (req.files.length == 3) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.create({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							})
+							img3 = db.Image.create({
+								name: req.files[2].filename,
+								main: 3,
+								product_id: req.params.productId
+							})
+							Promise.all([img1, img2, img3])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+						}
+
+						// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 2 \\
+
+					} else if (images.length == 2) {
+
+						console.log(images);
+
+						// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 2 \\
+						// Y NO SE EDITA NINGUNA IMAGEN \\
+
+						if (req.files == '') {
+							img1 = db.Image.update({
+								name: 'logo-pickBazar.jpg',
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 2 \\
+							// Y EN LA EDICION SE MODIFICA SOLO UNA \\
+
+						} else if (req.files.length == 1) {
+							console.log('magua');
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 2 \\
+							// Y EN LA EDICION SE MODIFICAN 2 \\
+
+						} else if (req.files.length == 2) {
+							console.log('entre mal');
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.update({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 2,
+								}
+							})
+							Promise.all([img1, img2])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 2 \\
+							// Y EN LA EDICION SE MODIFICAN 3 \\
+
+						} else if (req.files.length == 3) {
+							console.log('entre bien');
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.update({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 2,
+								}
+							})
+							console.log(req.files[2].filename);
+							img3 = db.Image.create({
+								name: req.files[2].filename,
+								main: 3,
+								product_id: req.params.productId
+							})
+							Promise.all([img1, img2, img3])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+						}
+
+						// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 3 \\ 
+
+					} else if (images.length == 3) {
+
+						// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 3 \\
+						// Y NO SE EDITA NINGUNA IMAGEN \\
+
+						if (req.files == '') {
+							img1 = db.Image.update({
+								name: 'logo-pickBazar.jpg',
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 3 \\
+							// Y EN LA EDICION SE MODIFICA 1 \\
+
+						} else if (req.files.length == 1) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 3 \\
+							// Y EN LA EDICION SE MODIFICAN 2 \\
+
+						} else if (req.files.length == 2) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.update({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 2,
+								}
+							})
+							Promise.all([img1, img2])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+							// SI LA CANTIDAD DE IMAGENES QUE TENIA ANTERIORMENTE EL ARTICULO ES 3 \\
+							// Y EN LA EDICION SE MODIFICAN 3 \\
+
+						} else if (req.files.length == 3) {
+							img1 = db.Image.update({
+								name: req.files[0].filename,
+								main: 1,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 1,
+								}
+							})
+							img2 = db.Image.update({
+								name: req.files[1].filename,
+								main: 2,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 2,
+								}
+							})
+							img3 = db.Image.update({
+								name: req.files[2].filename,
+								main: 3,
+								product_id: req.params.productId
+							}, {
+								where: {
+									product_id: req.params.productId,
+									main: 3,
+								}
+							})
+							Promise.all([img1, img2, img3])
+								.then(() => {
+									res.redirect('/products/detail/' + req.params.productId)
+								})
+								.catch((error) => {
+									console.log(error);
+								})
+
+						}
+					}
+
 				})
-				.catch((error) => {
-					console.log(error);
-				})
+
 		} else {
 			let categories = db.Category.findAll()
 			let subCategories = db.Subcategory.findAll()
@@ -662,190 +833,6 @@ const controller = {
 		}
 	},
 
-	/* 					db.Product.create({
-		name: req.body.name,
-		description: req.body.description,
-		price: Number(req.body.price),
-		discount: Number(req.body.discount),
-		tax: req.body.tax,
-		state: 1,
-		category_id: req.body.category,
-		subcategory_id: req.body.subcategory,
-		brand_id: marca.dataValues.id
-	})
-	.then((newProduct) => {
-		db.Image.create({
-			name: req.files[0].filename,
-			main: 1,
-			product_id: newProduct.id
-		})
-	})
-	.then(() => {
-		res.redirect('/products');
-	})
-	.catch((error) => {
-		console.log(error);
-	})
-} else {
-	db.Brand.create({
-		name: marcaBody
-	})
-	.then((brand) => {
-		db.Product.create({
-			name: req.body.name,
-			description: req.body.description,
-			price: Number(req.body.price),
-			discount: Number(req.body.discount),
-			tax: req.body.tax,
-			state: 1,
-			category_id: req.body.category,
-			subcategory_id: req.body.subcategory,
-			brand_id: brand.id
-		})
-			.then((productEdited) => {
-				db.Image.update({
-					name: req.files[0].filename,
-					main: 1,
-					product_id: productEdited.id
-				}, {
-					where: {
-						product_id: productEdited.id
-					}
-				})
-			})
-			.then(() => {
-				res.redirect('/products/detail/' + req.params.productId)
-		.then((newProduct) => {
-			console.log(newProduct)
-			db.Image.create({
-				name: req.files[0].filename,
-				main: 1,
-				product_id: newProduct.id
-			})
-		})
-	})
-	.then(() => {
-		res.redirect('/products');
-	})
-	.catch((error) => {
-		console.log(error);
-	})
-}
-})
-.catch((error) => {
-console.log(error);
-}) */
-
-	/* let id = req.params.productId;
-	let productToEdit;
-	let productEdited;
-	
-	for (let i = 0; i < products.length; i++) {
-		if (products[i].id == id) {
-			productToEdit = products[i];
-		}
-	}
-	if (req.files == "" && req.files[1] == undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		productEdited = {
-			id: productToEdit.id,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			important: productToEdit.important,
-			image: 'logo-pickBazar.jpg',
-			secondPick: '',
-			thirdPick: '',
-			fourthPick: '',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] == undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		productEdited = {
-			id: productToEdit.id,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			important: productToEdit.important,
-			image: req.files[0].filename,
-			secondPick: '',
-			thirdPick: '',
-			fourthPick: '',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] == undefined && req.files[3] == undefined) {
-		productEdited = {
-			id: productToEdit.id,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			important: productToEdit.important,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: '',
-			fourthPick: '',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] != undefined && req.files[3] == undefined) {
-		productEdited = {
-			id: productToEdit.id,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			important: productToEdit.important,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: req.files[2].filename,
-			fourthPick: '',
-			discount: Number(req.body.discount)
-		}
-	} else if (req.files[0] != undefined && req.files[1] != undefined && req.files[2] != undefined && req.files[3] != undefined) {
-		productEdited = {
-			id: productToEdit.id,
-			category: req.body.pickCategory,
-			subCategory: req.body.pickSubCategory,
-			name: req.body.name,
-			brand: req.body.brand,
-			description: req.body.description,
-			price: Number(req.body.price),
-			tax: req.body.tax,
-			important: productToEdit.important,
-			image: req.files[0].filename,
-			secondPick: req.files[1].filename,
-			thirdPick: req.files[2].filename,
-			fourthPick: req.files[3].filename,
-			discount: Number(req.body.discount)
-		}
-	}
-	
-	
-	for (let i = 0; i < products.length; i++) {
-		if (products[i].id == id) {
-			products[i] = productEdited;
-		}
-	}
-	
-	fs.writeFileSync(productsDB, JSON.stringify(products));
-	
-	
-	res.redirect('/products/detail/' + id); */
-
-
-	// Delete - Delete one product from DB
 	destroy: (req, res, next) => {
 
 		let id = req.params.productId;

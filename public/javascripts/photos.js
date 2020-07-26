@@ -18,6 +18,7 @@ window.addEventListener('load', () => {
             }
         })
     }
+
     smallImages.forEach((img) => {
         if (img.src == 'http://localhost:3000/images/products/logo-pickBazar.jpg') {
             contador++;

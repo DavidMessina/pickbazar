@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
 
-    let divUlSubcategory = document.querySelectorAll('.ulSubcategory')
+    //let divUlSubcategory = document.querySelectorAll('.ulSubcategory')
     let ulSubcategory = document.querySelectorAll('.subcategory');
     let aCategory = document.querySelectorAll('.categoryTitle');
     let toggle = document.querySelector('.btn-toggle-navbar');

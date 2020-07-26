@@ -8,12 +8,12 @@
     
     <div class="container -products-wrapper">
         <div class="row">
-            
+            <%//console.log(tickets.name)%>
             <div class="col-6 offset-3 col-sm-4 offset-sm-4 col-lg-4 offset-lg-4">
                 <section class="product-box">
                     <a href="/users/edit">
                         <article class="profile_data">
-                            <h2> Bienvenido/a <%=user[0].first_name%> <%=user[0].last_name%></h2>
+                            <h2><%=userFound[0].firstName + ' ' + userFound[0].lastName%></h2>
                             <figure class="product-box_image">
                                 <img src="/images/users/<%=user[0].avatar%>" alt="imagen de <%=user[0].avatar%>"">
                             </figure>
@@ -22,7 +22,6 @@
                             <p > <%=user[0].email%></p>
                         </article>
                     </a>
-                                       
                 </section>
                 <div class="orderButton"> 
                     <form action="/users/logout" method="POST">
@@ -35,10 +34,85 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-12">
+              <h2>Historial de compra</h2>
+              <%if(product!=0){ %>
+              <table border="0" align="left" class="table table-hover" style="width: 100%; padding-bottom: 20px;">
+                <thead>
+                  <tr align="left">
+                    <th scope="col"><h4>Ticket</h4></th>
+                    <th scope="col" colspan="2"><h4>Producto</h4></th>
+                    <th scope="col"><h4>Fecha</h4></th>
+                    <th scope="col"><h4>Precio</h4></th>
+                    <th scope="col"><h4>Descuento</h4></th>
+                    <th scope="col"><h4>Cant</h4></th>
+                    <th scope="col" colspan="2"><h4>Subtotal</h4></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(let i=0; i<product.length; i++){ %>
+                    <%let fecha = ""+product[i].updated_at%>
+                    <%let date = fecha.split(' ')%>
+                  <tr>
+                    <td width="20" style="text-align: center;"><%=product[i].cart_id%></td>
+                    <td width="55"> <figure>
+                      <img src="/images/products/<%=product[i].image%>" style="width:50px;" alt="imagen de <%=product[i].name%>">
+                    </figure></td>
+                    <td style="text-align: center;"><%=product[i].name%></td>
+                    <td style="text-align: center;"><%=date[1] +" "+ date[2] +" "+ date[3] +" "+ date[4]%></td>
+                    <td style="text-align: center;">$<%=product[i].price%> <span class="cart-discount"><%=product[i].discount%>% OFF</span></td>
+                    <td style="text-align: center;">$<%=(product[i].price*product[i].units)*product[i].discount/100%></td>
+                             
+                    <td style="text-align: center;"><%=product[i].units%></td>
+                    <td style="text-align: center;"><%=product[i].subtotal%></td>
+                  </tr>
+                  <%}%>
+                </tbody>
+              </table>
+              <%} else {%>
+                <h3 style="color: #f58220;">Aquí podrás encontrar el detalle de tus compras realizadas</h3>
+                <table border="0" align="left" class="table table-hover" style="width: 100%; padding-bottom: 20px;">
+                  <thead>
+                    <tr align="left">
+                      <th scope="col"><h4>Compra#</h4></th>
+                      <th scope="col" colspan="2"><h4>Producto</h4></th>
+                      <th scope="col"><h4>Fecha</h4></th>
+                      <th scope="col"><h4>Precio</h4></th>
+                      <th scope="col"><h4>Descuento</h4></th>
+                      <th scope="col"><h4>Cant</h4></th>
+                      <th scope="col" colspan="2"><h4>Subtotal</h4></th>
+                    </tr>
+                  </thead>
+                  <tbody><tr>
+                    <td scope="row"></td>
+                    <td width="55"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+                
+              <%}%>
+            </div>
     </div>
-    
+    </div>
+
     
     <%- include('../partials/footer') %>
+    <!--<script>
+      let confirmar = document.querySelector("#delete");
+       confirmar.addEventListener("click", function (e) {
+          
+        let resultado = confirm("¿Darse de baja?")
+        console.log(resultado);
+       })
+    </script>-->
 </body>
 
 </html>

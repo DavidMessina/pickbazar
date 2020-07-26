@@ -36,7 +36,6 @@ app.use(function (req, res, next) {
 })
 
 app.use(function (req, res, next) {
-  
   db.Category.findAll(
     )
     .then(function (category) {
