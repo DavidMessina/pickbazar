@@ -5,7 +5,7 @@ const usersController = require('../controllers/usersController');
 const userMiddlewares = require('../middlewares/userMiddlewares');
 const { check, validationResult, body } = require('express-validator');
 const multer = require('multer');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const db = require("../database/models")
 
 const path = require('path');
