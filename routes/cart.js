@@ -14,8 +14,8 @@ router.get('/', cartController.show);
 
 /************ ADD Items to CART ************/
 /* GET - Form to create */
-router.get('/add/:id', cartController.create);
 router.get('/plus/:id', cartController.plus);
+router.get('/add/:id', cartController.create);
 router.get('/minus/:id', cartController.minus);
 
 /************ CONFIRMAR compra  ************/

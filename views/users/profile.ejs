@@ -38,7 +38,6 @@
         <div class="row">
             <div class="col-12 col-lg-12">
               <h2>Historial de compra</h2>
-              <%if(product!=0){ %>
               <table border="0" align="left" class="table table-hover" style="width: 100%; padding-bottom: 20px;">
                 <thead>
                   <tr align="left">
@@ -51,54 +50,65 @@
                     <th scope="col" colspan="2"><h4>Subtotal</h4></th>
                   </tr>
                 </thead>
+              <%if(product!=0){ %>
                 <tbody>
+                  <%let ticket=product[0].cart_id;%>
+                  <%let total=product[0].total;%>
                   <%for(let i=0; i<product.length; i++){ %>
-                    <%let fecha = ""+product[i].updated_at%>
-                    <%let date = fecha.split(' ')%>
+                    <%let fecha = ""+product[i].updated_at;%>
+                    <%let date = fecha.split(' ');%>
+                    <%if (ticket==product[i].cart_id) {%>
+                      <tr>
+                        <td width="20" style="text-align: center;"><%=product[i].cart_id%></td>
+                        <td width="55"> <figure>
+                          <img src="/images/products/<%=product[i].image%>" style="width:50px;" alt="imagen de <%=product[i].name%>">
+                        </figure></td>
+                        <td style="text-align: center;"><%=product[i].name%></td>
+                        <td style="text-align: center;"><%=date[1] +" "+ date[2] +" "+ date[3] +" "+ date[4]%></td>
+                        <td style="text-align: center;">$<%=product[i].price%> <span class="cart-discount"><%=product[i].discount%>% OFF</span></td>
+                        <td style="text-align: center;">$<%=(product[i].price*product[i].units)*product[i].discount/100%></td>
+                                
+                        <td style="text-align: center;"><%=product[i].units%></td>
+                        <td style="text-align: center;">$<%=product[i].subtotal%>%></td>
+                      </tr>
+                      <%} else {%>
+                        <tr>
+                          <th colspan="7" style="text-align: right;">TOTAL</th>
+                          <th style="text-align: center;">$<%=total%></th>
+                        </tr>
+                        <tr>
+                          <td width="20" style="text-align: center;"><%=product[i].cart_id%></td>
+                          <td width="55"> <figure>
+                            <img src="/images/products/<%=product[i].image%>" style="width:50px;" alt="imagen de <%=product[i].name%>">
+                          </figure></td>
+                          <td style="text-align: center;"><%=product[i].name%></td>
+                          <td style="text-align: center;"><%=date[1] +" "+ date[2] +" "+ date[3] +" "+ date[4]%></td>
+                          <td style="text-align: center;">$<%=product[i].price%> <span class="cart-discount"><%=product[i].discount%>% OFF</span></td>
+                          <td style="text-align: center;">$<%=(product[i].price*product[i].units)*product[i].discount/100%></td>
+                                  
+                          <td style="text-align: center;"><%=product[i].units%></td>
+                          <td style="text-align: center;">$<%=product[i].subtotal%>%></td>
+                        </tr>
+                      <%ticket=product[i].cart_id;
+                        total=product[i].total;
+                        }%>
+                  <%}%>
                   <tr>
-                    <td width="20" style="text-align: center;"><%=product[i].cart_id%></td>
-                    <td width="55"> <figure>
-                      <img src="/images/products/<%=product[i].image%>" style="width:50px;" alt="imagen de <%=product[i].name%>">
-                    </figure></td>
-                    <td style="text-align: center;"><%=product[i].name%></td>
-                    <td style="text-align: center;"><%=date[1] +" "+ date[2] +" "+ date[3] +" "+ date[4]%></td>
-                    <td style="text-align: center;">$<%=product[i].price%> <span class="cart-discount"><%=product[i].discount%>% OFF</span></td>
-                    <td style="text-align: center;">$<%=(product[i].price*product[i].units)*product[i].discount/100%></td>
-                             
-                    <td style="text-align: center;"><%=product[i].units%></td>
-                    <td style="text-align: center;"><%=product[i].subtotal%></td>
+                    <th colspan="7" style="text-align: right;">TOTAL</th>
+                    <th style="text-align: center;">$<%=total%></th>
+                  </tr>
+                </tbody>
+              </table>
+              <%} else {%>
+               
+                  <tr>
+                    <td colspan="8" align="center"><h3>NO HAY HISTORIAL DE COMPRAS</h3></td>
                   </tr>
                   <%}%>
                 </tbody>
               </table>
-              <%} else {%>
-                <h3 style="color: #f58220;">Aquí podrás encontrar el detalle de tus compras realizadas</h3>
-                <table border="0" align="left" class="table table-hover" style="width: 100%; padding-bottom: 20px;">
-                  <thead>
-                    <tr align="left">
-                      <th scope="col"><h4>Compra#</h4></th>
-                      <th scope="col" colspan="2"><h4>Producto</h4></th>
-                      <th scope="col"><h4>Fecha</h4></th>
-                      <th scope="col"><h4>Precio</h4></th>
-                      <th scope="col"><h4>Descuento</h4></th>
-                      <th scope="col"><h4>Cant</h4></th>
-                      <th scope="col" colspan="2"><h4>Subtotal</h4></th>
-                    </tr>
-                  </thead>
-                  <tbody><tr>
-                    <td scope="row"></td>
-                    <td width="55"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
                 
-              <%}%>
+             
             </div>
     </div>
     </div>
